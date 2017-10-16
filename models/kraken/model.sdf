@@ -1,0 +1,672 @@
+<?xml version='1.0'?>
+<sdf version='1.4'>
+  <model name="kraken">
+    <static>false</static>
+      <link name='base_link'>
+        <pose frame=''>0 0 0.224272 0 -0 0</pose>
+        <inertial>
+          <mass>18.285</mass>
+          <inertia>
+            <ixx>0.53997</ixx>
+            <ixy>0.002594</ixy>
+            <ixz>0.013868</ixz>
+            <iyy>2.0293</iyy>
+            <iyz>-0.00043267</iyz>
+            <izz>1.8878</izz>
+          </inertia>
+        </inertial>
+        <visual name='base_link_visual'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/base_link.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material/>
+        </visual>
+        <collision name='base_link_collision'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/base_link.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <link name='thruster_surge_left'>
+        <pose frame=''>-0.12579 0.17295 0.24722 -1.5708 -0 3.14159</pose>
+        <inertial>
+          <mass>0.27942</mass>
+          <inertia>
+            <ixx>0.00014697</ixx>
+            <ixy>-2.2392e-05</ixy>
+            <ixz>8.9545e-07</ixz>
+            <iyy>0.00072689</iyy>
+            <iyz>-3.6164e-07</iyz>
+            <izz>0.00074014</izz>
+          </inertia>
+        </inertial>
+        <visual name='thruster_surge_left_visual'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/thruster_surge_left.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='thruster_surge_left_collision'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/thruster_surge_left.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='joint_thruster_surge_left' type='fixed'>
+        <parent>base_link</parent>
+        <child>thruster_surge_left</child>
+        <pose frame=''>0 0 0 0 0 3.1416</pose>
+      </joint>
+      <link name='thruster_surge_right'>
+        <pose frame=''>-0.12579 -0.17295 0.24722 -1.5708 -0 3.14159</pose>
+        <inertial>
+          <mass>0.27942</mass>
+          <inertia>
+            <ixx>0.00014697</ixx>
+            <ixy>-2.2392e-05</ixy>
+            <ixz>8.9545e-07</ixz>
+            <iyy>0.00072689</iyy>
+            <iyz>-3.6164e-07</iyz>
+            <izz>0.00074014</izz>
+          </inertia>
+        </inertial>
+        <visual name='thruster_surge_right_visual'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/thruster_surge_right.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material/>
+        </visual>
+        <collision name='thruster_surge_right_collision'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/thruster_surge_right.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='joint_thruster_surge_right' type='fixed'>
+        <parent>base_link</parent>
+        <child>thruster_surge_right</child>
+        <pose frame=''>0 0 0 0 0 3.1415</pose>
+      </joint>
+      <link name='thruster_sway_front'>
+        <pose frame=''>0.60287 -0.038552 0.167554 -3.14159 -0 -1.5708</pose>
+        <inertial>
+          <mass>0.27942</mass>
+          <inertia>
+            <ixx>0.00014697</ixx>
+            <ixy>-2.2392e-05</ixy>
+            <ixz>8.9545e-07</ixz>
+            <iyy>0.00072689</iyy>
+            <iyz>-3.6164e-07</iyz>
+            <izz>0.00074014</izz>
+          </inertia>
+        </inertial>
+        <visual name='thruster_sway_front_visual'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/thruster_sway_front.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material/>
+        </visual>
+        <collision name='thruster_sway_front_collision'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/thruster_sway_front.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='joint_thruster_sway_front' type='fixed'>
+        <parent>base_link</parent>
+        <child>thruster_sway_front</child>
+        <pose frame=''>0 0 0 0 0 3.1415</pose>
+      </joint>
+      <link name='thruster_sway_back'>
+        <pose frame=''>-0.68846 -0.038552 0.167554 0 0 -1.5708</pose>
+        <inertial>
+          <mass>0.27942</mass>
+          <inertia>
+            <ixx>0.00014697</ixx>
+            <ixy>-2.2392e-05</ixy>
+            <ixz>8.9545e-07</ixz>
+            <iyy>0.00072689</iyy>
+            <iyz>-3.6164e-07</iyz>
+            <izz>0.00074014</izz>
+          </inertia>
+        </inertial>
+        <visual name='thruster_sway_back_visual'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/thruster_sway_back.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material/>
+        </visual>
+        <collision name='thruster_sway_back_collision'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/thruster_sway_back.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='joint_thruster_sway_back' type='fixed'>
+        <parent>base_link</parent>
+        <child>thruster_sway_back</child>
+        <pose frame=''>0 0 0 0 0 3.1415</pose>
+      </joint>
+      <link name='thruster_depth_back'>
+        <pose frame=''>-0.52013 -0.002052 0.154993 -3.05661 -1.57079 3.14159</pose>
+        <inertial>
+          <mass>0.27942</mass>
+          <inertia>
+            <ixx>0.00014697</ixx>
+            <ixy>-2.2392e-05</ixy>
+            <ixz>8.9545e-07</ixz>
+            <iyy>0.00072689</iyy>
+            <iyz>-3.6164e-07</iyz>
+            <izz>0.00074014</izz>
+          </inertia>
+        </inertial>
+        <visual name='thruster_depth_back_visual'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/thruster_depth_back.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material/>
+        </visual>
+        <collision name='thruster_depth_back_collision'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/thruster_depth_back.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='joint_thruster_depth_back' type='fixed'>
+        <parent>base_link</parent>
+        <child>thruster_depth_back</child>
+        <pose frame=''>0 0 0 0 0 3.1415</pose>
+      </joint>
+      <link name='thruster_depth_front'>
+        <pose frame=''>0.434541 0.001948 0.154993 3.05587 -1.57079 -3e-06</pose>
+        <inertial>
+          <mass>0.27942</mass>
+          <inertia>
+            <ixx>0.00014697</ixx>
+            <ixy>-2.2392e-05</ixy>
+            <ixz>8.9545e-07</ixz>
+            <iyy>0.00072689</iyy>
+            <iyz>-3.6164e-07</iyz>
+            <izz>0.00074014</izz>
+          </inertia>
+        </inertial>
+        <visual name='thruster_depth_front_visual'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/thruster_depth_front.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material/>
+        </visual>
+        <collision name='thruster_depth_front_collision'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/thruster_depth_front.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='joint_thruster_depth_front' type='fixed'>
+        <parent>base_link</parent>
+        <child>thruster_depth_front</child>
+        <pose frame=''>0 0 0 0 0 3.1415</pose>
+      </joint>
+      <link name='front_camera'>
+        <pose frame=''>0.50159 0.001048 0.322558 1.5708 -0 1.5708</pose>
+        <inertial>
+          <mass>0.76015</mass>
+          <inertia>
+            <ixx>0.0044413</ixx>
+            <ixy>-1.3816e-07</ixy>
+            <ixz>-1.2382e-06</ixz>
+            <iyy>0.0044479</iyy>
+            <iyz>2.8356e-06</iyz>
+            <izz>0.0008292</izz>
+          </inertia>
+        </inertial>
+        <visual name='front_camera_visual'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/front_camera.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material/>
+        </visual>
+        <collision name='front_camera_collision'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/front_camera.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <sensor type="camera" name="front_camera">
+       <update_rate>30.0</update_rate>
+       <camera name="front">
+         <pose frame=''>0 0 0.127 4.7124 -1.5708 0</pose>
+         <horizontal_fov>1.3962634</horizontal_fov>
+         <image>
+           <width>640</width>
+           <height>480</height>
+           <format>R8G8B8</format>
+         </image>
+         <clip>
+           <near>0.02</near>
+           <far>300</far>
+         </clip>
+         <noise>
+           <type>gaussian</type>
+           <!-- Noise is sampled independently per pixel on each frame.
+                That pixel's noise value is added to each of its color
+                channels, which at that point lie in the range [0,1]. -->
+           <mean>0.0</mean>
+           <stddev>0.007</stddev>
+         </noise>
+       </camera>
+       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+         <alwaysOn>true</alwaysOn>
+         <updateRate>0.0</updateRate>
+         <cameraName>KrakenSimulator/front_camera</cameraName>
+         <imageTopicName>image_raw</imageTopicName>
+         <cameraInfoTopicName>image_info</cameraInfoTopicName>
+         <frameName>front_camera</frameName>
+         <hackBaseline>0.07</hackBaseline>
+         <distortionK1>0.0</distortionK1>
+         <distortionK2>0.0</distortionK2>
+         <distortionK3>0.0</distortionK3>
+         <distortionT1>0.0</distortionT1>
+         <distortionT2>0.0</distortionT2>
+       </plugin>
+     </sensor>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='joint_front_camera' type='fixed'>
+        <parent>base_link</parent>
+        <child>front_camera</child>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </joint>
+      <link name='bottom_camera'>
+        <pose frame=''>0.3039 0.002634 0.201764 -3.14159 -0 -1.5708</pose>
+        <inertial>
+          <mass>0.75357</mass>
+          <inertia>
+            <ixx>0.0041084</ixx>
+            <ixy>-1.0367e-07</ixy>
+            <ixz>9.3472e-07</ixz>
+            <iyy>0.0041141</iyy>
+            <iyz>-4.1311e-06</iyz>
+            <izz>0.00089781</izz>
+          </inertia>
+        </inertial>
+        <visual name='bottom_camera_visual'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/bottom_camera.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material/>
+        </visual>
+        <collision name='bottom_camera_collision'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/bottom_camera.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <sensor type="camera" name="bottom_camera">
+       <update_rate>30.0</update_rate>
+       <camera name="bottom">
+         <pose frame=''>0 0 0.127 1.5708 -1.5708 0</pose>
+         <horizontal_fov>1.3962634</horizontal_fov>
+         <image>
+           <width>640</width>
+           <height>480</height>
+           <format>R8G8B8</format>
+         </image>
+         <clip>
+           <near>0.02</near>
+           <far>300</far>
+         </clip>
+         <noise>
+           <type>gaussian</type>
+           <!-- Noise is sampled independently per pixel on each frame.
+                That pixel's noise value is added to each of its color
+                channels, which at that point lie in the range [0,1]. -->
+           <mean>0.0</mean>
+           <stddev>0.007</stddev>
+         </noise>
+       </camera>
+       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+         <alwaysOn>true</alwaysOn>
+         <updateRate>0.0</updateRate>
+         <cameraName>KrakenSimulator/bottom_camera</cameraName>
+         <imageTopicName>image_raw</imageTopicName>
+         <cameraInfoTopicName>image_info</cameraInfoTopicName>
+         <frameName>bottom_camera</frameName>
+         <hackBaseline>0.07</hackBaseline>
+         <distortionK1>0.0</distortionK1>
+         <distortionK2>0.0</distortionK2>
+         <distortionK3>0.0</distortionK3>
+         <distortionT1>0.0</distortionT1>
+         <distortionT2>0.0</distortionT2>
+       </plugin>
+     </sensor>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='joint_bottom_camera' type='fixed'>
+        <parent>base_link</parent>
+        <child>bottom_camera</child>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </joint>
+      <link name='DVL'>
+        <pose frame=''>-0.063112 -0.01239 0.233654 -1.5708 -0 -2.7631</pose>
+        <inertial>
+          <mass>1.676</mass>
+          <inertia>
+            <ixx>0.0057071</ixx>
+            <ixy>-3.8911e-06</ixy>
+            <ixz>8.2948e-11</ixz>
+            <iyy>0.0026774</iyy>
+            <iyz>-7.4438e-08</iyz>
+            <izz>0.0057137</izz>
+          </inertia>
+        </inertial>
+        <visual name='DVL_visual'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/DVL.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <material/>
+        </visual>
+        <collision name='DVL_collision'>
+          <geometry>
+            <mesh>
+              <uri>model://kraken_model/meshes/DVL.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='joint_DVL' type='fixed'>
+        <parent>base_link</parent>
+        <child>DVL</child>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </joint>
+      <link name='Imu'>
+        <pose frame=''>0 0 0.44 0 -0 0</pose>
+        <inertial>
+          <mass>1e-06</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <ixy>0.0001</ixy>
+            <ixz>0.0001</ixz>
+            <iyy>0.0001</iyy>
+            <iyz>0.0001</iyz>
+            <izz>0.0001</izz>
+          </inertia>
+        </inertial>
+        <visual name='Imu_visual'>
+          <geometry>
+            <box>
+              <size>0.01 0.01 0.01</size>
+            </box>
+          </geometry>
+        </visual>
+        <collision name='Imu_collision'>
+          <geometry>
+            <box>
+              <size>0.01 0.01 0.01</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='joint_Imu' type='fixed'>
+        <parent>base_link</parent>
+        <child>Imu</child>
+        <pose frame=''>0 0 0 0 0 3.1415</pose>
+      </joint>
+
+  <plugin name="BuoyancyPlugin" filename="lib_BouyancyPlugin.so">
+        <fluid_density>80</fluid_density>
+        <center_of_volume>0 0 0.224272</center_of_volume>
+        <volume>0.0001</volume>
+  </plugin>
+
+   <plugin name="lifting_surface" filename="libLiftDragPlugin.so">
+        <a0>0.08727</a0>
+        <alpha_stall>0.3368</alpha_stall>
+        <cla>5.418</cla>
+        <cla_stall>-2.1419</cla_stall>
+        <cda>0.0</cda>
+        <cda_stall>0.0</cda_stall>
+        <cma>0.0</cma>
+        <cma_stall>0.0</cma_stall>
+        <area>3</area>
+        <fluid_density>1000</fluid_density>
+        <forward>-1 0 0</forward>
+        <upward>0 -1 0</upward>
+        <cp>0 0 1</cp>
+        <link_name>base_link</link_name>
+        <radial_symmetry>false</radial_symmetry>
+      </plugin>
+
+      <plugin name="KrakenControlPlugin" filename="libKrakenControlPlugin.so"></plugin>
+
+    </model>
+    </sdf>

@@ -1,0 +1,110 @@
+<?xml version='1.0'?>
+<sdf version='1.4'>
+  <model name="pool">
+    <static>true</static>
+
+    <link name='pool_wall'>
+      <pose frame=''>0 0 1.5 1.5708 0 0</pose>
+      <visual name='base_link_visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://pool/meshes/pool_wall.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Runway</name>
+          </script>
+        </material>
+      </visual>
+      <collision name='base_link_collision'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://pool/meshes/pool_wall.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='water'>
+      <pose frame=''>0 0 1.5 1.5708 0 0</pose>
+      <visual name='water_visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://pool/meshes/water.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://pool/materials/scripts/water.material</uri>
+            <name>UUVSimulator/SeaWall</name>
+          </script>
+
+        </material>
+      </visual>
+      <collision name='water_collision'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://pool/meshes/water.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='top_surface'>
+      <pose frame=''>0 0 3.25 0 0 0</pose>
+      <visual name='top_surface_visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>25 50 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://pool/materials/scripts/water.material</uri>
+            <name>UUVSimulator/SeaWall</name>
+          </script>
+        </material>
+      </visual>
+      <collision name='top_surface_collision'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>25 50 0.001</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+    <link name='botton_surface'>
+      <pose frame=''>0 0 0.25 0 0 0</pose>
+      <visual name='bottom_surface_visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>25 50 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://pool/materials/scripts/water.material</uri>
+            <name>UUVSimulator/SeaWall</name>
+          </script>
+        </material>
+      </visual>
+      <collision name='bottom_surface_collision'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>25 50 0.001</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>
