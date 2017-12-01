@@ -648,6 +648,46 @@
           <volume>0.001</volume>
           <center_of_volume>0 0 0</center_of_volume><!--0.224272-->
         </link>
+        <!--link name="thruster_surge_left">
+          <volume>0.001</volume>
+          <center_of_volume>0 0 0</center_of_volume>
+        </link>
+        <link name="thruster_surge_right">
+          <volume>0.001</volume>
+          <center_of_volume>0 0 0</center_of_volume>
+        </link>
+        <link name="thruster_sway_back">
+          <volume>0.001</volume>
+          <center_of_volume>0 0 0</center_of_volume>
+        </link>
+        <link name="thruster_sway_front">
+          <volume>0.001</volume>
+          <center_of_volume>0 0 0</center_of_volume>
+        </link>
+        <link name="thruster_depth_back">
+          <volume>0.001</volume>
+          <center_of_volume>0 0 0</center_of_volume>
+        </link>
+        <link name="thruster_depth_front">
+          <volume>0.001</volume>
+          <center_of_volume>0 0 0</center_of_volume>
+        </link>
+        <link name="DVL">
+          <volume>0.001</volume>
+          <center_of_volume>0 0 0</center_of_volume>
+        </link>
+        <link name="Imu">
+          <volume>0.001</volume>
+          <center_of_volume>0 0 0</center_of_volume>
+        </link>
+        <link name="front_camera">
+          <volume>0.001</volume>
+          <center_of_volume>0 0 0</center_of_volume>
+        </link>
+        <link name="bottom_camera">
+          <volume>0.001</volume>
+          <center_of_volume>0 0 0</center_of_volume>
+        </link-->
   </plugin>
 
    <plugin name="lifting_surface" filename="libLiftDragPlugin.so">
