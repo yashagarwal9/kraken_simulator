@@ -13,7 +13,6 @@ void KrakenControlPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf){
   this->model = _model;
   this->sdf = _sdf;
   physics::WorldPtr world = _model->GetWorld();
-  //this->joint = _model->GetJoint();
   this->physicsEngine = world->GetPhysicsEngine();
   GZ_ASSERT(world != NULL, "MODEL IS IN A NULL WORLD");
   GZ_ASSERT(this->physicsEngine != NULL, "PHYSICS ENGINE WAS NULL");
@@ -22,7 +21,7 @@ void KrakenControlPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf){
   ros::NodeHandle n;
   KrakenControlPlugin::DVLPub = n.advertise<geometry_msgs::Twist>("KrakenSimulator/DVL", 1);
   KrakenControlPlugin::PosePub = n.advertise<geometry_msgs::Pose>("KrakenSimulator/Pose", 1);
-  _thrust6dataSub = n.subscribe<msgs_stack::thrusterData6>("SIMULATOR_MODEL_FORCE_DATA_6_THRUSTERS", 10, &KrakenControlPlugin::thrust6Callback, this);
+  _thrust6dataSub = n.subscribe<msgs_stack::thrusterData6>("krakenSimulator_thrusterData6", 10, &KrakenControlPlugin::thrust6Callback, this);
 }
 
 void KrakenControlPlugin::Init(){
@@ -49,11 +48,10 @@ void KrakenControlPlugin::Update(){
 }
 
 void KrakenControlPlugin::thrust6Callback(const msgs_stack::thrusterData6::ConstPtr &msg){
-  float gain = 10;
-  this->model->GetJoint("joint_thruster_surge_left")->SetForce(0, msg->data[0]*gain);
-  this->model->GetJoint("joint_thruster_surge_right")->SetForce(0, msg->data[1]*gain);
-  this->model->GetJoint("joint_thruster_sway_front")->SetForce(0, msg->data[2]*gain);
-  this->model->GetJoint("joint_thruster_surge_back")->SetForce(0, msg->data[3]*gain);
-  this->model->GetJoint("joint_thruster_depth_back")->SetForce(0, msg->data[4]*gain);
-  this->model->GetJoint("joint_thruster_depth_front")->SetForce(0, msg->data[5]*gain);
+  this->model->GetLink("thruster_surge_left")->SetForce({msg->data[0], 0, 0});
+  this->model->GetLink("thruster_surge_right")->SetForce({msg->data[1], 0, 0});
+  this->model->GetLink("thruster_sway_back")->SetForce({0, msg->data[2], 0});
+  this->model->GetLink("thruster_sway_front")->SetForce({0, msg->data[3], 0});
+  this->model->GetLink("thruster_depth_back")->SetForce({0, 0, msg->data[4]});
+  this->model->GetLink("thruster_depth_front")->SetForce({0, 0, msg->data[5]});
 }
