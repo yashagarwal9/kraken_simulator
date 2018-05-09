@@ -2,12 +2,11 @@
 #include<gazebo/common/Assert.hh>
 #include<geometry_msgs/Twist.h>
 #include<geometry_msgs/Pose.h>
+#include<iostream>
 using namespace gazebo;
 GZ_REGISTER_MODEL_PLUGIN(KrakenControlPlugin)
 
-KrakenControlPlugin::KrakenControlPlugin(){
-
-}
+KrakenControlPlugin::KrakenControlPlugin(){}
 
 void KrakenControlPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf){
   this->model = _model;
@@ -35,23 +34,44 @@ void KrakenControlPlugin::Update(){
  DVL_Twist.linear.z = this->model->GetLink("DVL")->GetRelativeLinearVel()[2];
  DVLPub.publish(DVL_Twist);
  geometry_msgs::Pose _pose;
- _pose.position.x = this->model->GetRelativePose().pos.x;
- _pose.position.y = this->model->GetRelativePose().pos.y;
- _pose.position.z = this->model->GetRelativePose().pos.z;
- _pose.orientation.x = this->model->GetRelativePose().rot.x;
- _pose.orientation.y = this->model->GetRelativePose().rot.y;
- _pose.orientation.z = this->model->GetRelativePose().rot.z;
- _pose.orientation.w = this->model->GetRelativePose().rot.w;
+ physics::ModelState modelState(this->model);
+ _pose.position.x = modelState.GetPose().pos.x;
+ _pose.position.y = modelState.GetPose().pos.y;
+ _pose.position.z = modelState.GetPose().pos.z;
+ _pose.orientation.x = modelState.GetPose().rot.x;
+ _pose.orientation.y = modelState.GetPose().rot.y;
+ _pose.orientation.z = modelState.GetPose().rot.z;
+ _pose.orientation.w = modelState.GetPose().rot.w;
  PosePub.publish(_pose);
  ros::spinOnce();
 
 }
 
 void KrakenControlPlugin::thrust6Callback(const msgs_stack::thrusterData6::ConstPtr &msg){
-  this->model->GetLink("thruster_surge_left")->SetForce({msg->data[0], 0, 0});
-  this->model->GetLink("thruster_surge_right")->SetForce({msg->data[1], 0, 0});
-  this->model->GetLink("thruster_sway_back")->SetForce({0, msg->data[2], 0});
-  this->model->GetLink("thruster_sway_front")->SetForce({0, msg->data[3], 0});
-  this->model->GetLink("thruster_depth_back")->SetForce({0, 0, msg->data[4]});
-  this->model->GetLink("thruster_depth_front")->SetForce({0, 0, msg->data[5]});
+  msgs_stack::thrusterData6::Type thrust;
+  for(int i = 0; i<6; i++){
+    if((msg->data[i] < 50000) && (msg->data[i] >= 0)){
+          thrust.data[i] = msg->data[i];
+          thrust.data[i] = 0.0006835*thrust.data[i]*thrust.data[i];
+        }
+
+    else if((msg->data[i] > -50000) && (msg->data[i] < 0)){
+          thrust.data[i] = msg->data[i];
+          thrust.data[i] = -0.0006835*thrust.data[i]*thrust.data[i];
+        }
+
+    else{
+          if((msg->data[i] > 0))
+            thrust.data[i] = 0.0006835*50000*50000;
+          if((msg->data[i] < 0))
+            thrust.data[i] = -0.0006835*50000*50000;
+        }
+      }
+  std::cout<<thrust<<"\n";
+  this->model->GetLink("thruster_surge_left")->AddRelativeForce({thrust.data[0], 0, 0});
+  this->model->GetLink("thruster_surge_right")->AddRelativeForce({thrust.data[1], 0, 0});
+  this->model->GetLink("thruster_sway_back")->AddRelativeForce({thrust.data[2], 0, 0});
+  this->model->GetLink("thruster_sway_front")->AddRelativeForce({thrust.data[3], 0, 0});
+  this->model->GetLink("thruster_depth_back")->AddRelativeForce({thrust.data[4], 0, 0});
+  this->model->GetLink("thruster_depth_front")->AddRelativeForce({thrust.data[5], 0, 0});
 }

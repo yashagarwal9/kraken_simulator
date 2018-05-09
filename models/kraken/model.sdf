@@ -5,7 +5,9 @@
       <link name='base_link'>
         <pose frame=''>0 0 0.224272 0 -0 0</pose>
         <inertial>
-          <mass>18.285</mass>
+          <!-- <mass>18.285</mass> -->
+          <!-- <mass>18.285</mass> -->
+          <mass>23.15124</mass>
           <inertia>
             <ixx>0.53997</ixx>
             <ixy>0.002594</ixy>
@@ -47,12 +49,13 @@
         </collision>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
-        <gravity>1</gravity>
+        <!--gravity>1</gravity-->
       </link>
       <link name='thruster_surge_left'>
         <pose frame=''>-0.12579 0.17295 0.24722 -1.5708 -0 3.14159</pose>
         <inertial>
-          <mass>0.27942</mass>
+          <mass>1e-06</mass>
+          <!-- <mass>0.27942</mass> -->
           <inertia>
             <ixx>0.00014697</ixx>
             <ixy>-2.2392e-05</ixy>
@@ -93,7 +96,7 @@
         </collision>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
-        <gravity>1</gravity>
+        <!--gravity>1</gravity-->
       </link>
       <joint name='joint_thruster_surge_left' type='fixed'>
         <parent>base_link</parent>
@@ -103,7 +106,7 @@
       <link name='thruster_surge_right'>
         <pose frame=''>-0.12579 -0.17295 0.24722 -1.5708 -0 3.14159</pose>
         <inertial>
-          <mass>0.27942</mass>
+          <mass>1e-06</mass>
           <inertia>
             <ixx>0.00014697</ixx>
             <ixy>-2.2392e-05</ixy>
@@ -145,7 +148,7 @@
         </collision>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
-        <gravity>1</gravity>
+        <!--gravity>1</gravity-->
       </link>
       <joint name='joint_thruster_surge_right' type='fixed'>
         <parent>base_link</parent>
@@ -155,7 +158,7 @@
       <link name='thruster_sway_front'>
         <pose frame=''>0.60287 -0.038552 0.167554 -3.14159 -0 -1.5708</pose>
         <inertial>
-          <mass>0.27942</mass>
+          <mass>1e-06</mass>
           <inertia>
             <ixx>0.00014697</ixx>
             <ixy>-2.2392e-05</ixy>
@@ -197,7 +200,7 @@
         </collision>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
-        <gravity>1</gravity>
+        <!--gravity>1</gravity-->
       </link>
       <joint name='joint_thruster_sway_front' type='fixed'>
         <parent>base_link</parent>
@@ -207,7 +210,7 @@
       <link name='thruster_sway_back'>
         <pose frame=''>-0.68846 -0.038552 0.167554 0 0 -1.5708</pose>
         <inertial>
-          <mass>0.27942</mass>
+          <mass>1e-06</mass>
           <inertia>
             <ixx>0.00014697</ixx>
             <ixy>-2.2392e-05</ixy>
@@ -249,7 +252,7 @@
         </collision>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
-        <gravity>1</gravity>
+        <!--gravity>1</gravity-->
       </link>
       <joint name='joint_thruster_sway_back' type='fixed'>
         <parent>base_link</parent>
@@ -259,7 +262,7 @@
       <link name='thruster_depth_back'>
         <pose frame=''>-0.52013 -0.002052 0.154993 -3.05661 -1.57079 3.14159</pose>
         <inertial>
-          <mass>0.27942</mass>
+          <mass>1e-06</mass>
           <inertia>
             <ixx>0.00014697</ixx>
             <ixy>-2.2392e-05</ixy>
@@ -301,7 +304,7 @@
         </collision>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
-        <gravity>1</gravity>
+        <!--gravity>1</gravity-->
       </link>
       <joint name='joint_thruster_depth_back' type='fixed'>
         <parent>base_link</parent>
@@ -311,7 +314,7 @@
       <link name='thruster_depth_front'>
         <pose frame=''>0.434541 0.001948 0.154993 3.05587 -1.57079 -3e-06</pose>
         <inertial>
-          <mass>0.27942</mass>
+          <mass>1e-06</mass>
           <inertia>
             <ixx>0.00014697</ixx>
             <ixy>-2.2392e-05</ixy>
@@ -353,7 +356,7 @@
         </collision>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
-        <gravity>1</gravity>
+        <!--gravity>1</gravity-->
       </link>
       <joint name='joint_thruster_depth_front' type='fixed'>
         <parent>base_link</parent>
@@ -363,7 +366,7 @@
       <link name='front_camera'>
         <pose frame=''>0.50159 0.001048 0.322558 1.5708 -0 1.5708</pose>
         <inertial>
-          <mass>0.76015</mass>
+          <mass>1e-06</mass>
           <inertia>
             <ixx>0.0044413</ixx>
             <ixy>-1.3816e-07</ixy>
@@ -443,7 +446,7 @@
      </sensor>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
-        <gravity>1</gravity>
+        <!--gravity>1</gravity-->
       </link>
       <joint name='joint_front_camera' type='fixed'>
         <parent>base_link</parent>
@@ -453,7 +456,7 @@
       <link name='bottom_camera'>
         <pose frame=''>0.3039 0.002634 0.201764 -3.14159 -0 -1.5708</pose>
         <inertial>
-          <mass>0.75357</mass>
+          <mass>1e-06</mass>
           <inertia>
             <ixx>0.0041084</ixx>
             <ixy>-1.0367e-07</ixy>
@@ -533,7 +536,7 @@
      </sensor>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
-        <gravity>1</gravity>
+        <!--gravity>1</gravity-->
       </link>
       <joint name='joint_bottom_camera' type='fixed'>
         <parent>base_link</parent>
@@ -543,7 +546,7 @@
       <link name='DVL'>
         <pose frame=''>-0.063112 -0.01239 0.233654 -1.5708 -0 -2.7631</pose>
         <inertial>
-          <mass>1.676</mass>
+          <mass>1e-06</mass>
           <inertia>
             <ixx>0.0057071</ixx>
             <ixy>-3.8911e-06</ixy>
@@ -585,7 +588,7 @@
         </collision>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
-        <gravity>1</gravity>
+        <!--gravity>1</gravity-->
       </link>
       <joint name='joint_DVL' type='fixed'>
         <parent>base_link</parent>
@@ -634,7 +637,7 @@
         </collision>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
-        <gravity>1</gravity>
+        <!--gravity>1</gravity-->
       </link>
       <joint name='joint_Imu' type='fixed'>
         <parent>base_link</parent>
@@ -642,13 +645,62 @@
         <pose frame=''>0 0 0 0 0 3.1415</pose>
       </joint>
 
-  <plugin name="BuoyancyPlugin" filename="lib_BouyancyPlugin.so">
+    <plugin name="KrakenControlPlugin" filename="libKrakenControlPlugin.so"></plugin>
+    <!-- <plugin name="_Hydrodynamics" filename="lib_Hydrodynamics.so">
+      <fluid_density>1000</fluid_density>
+      <no_of_links>1</no_of_links>
+      <link0 name="base_link">
+        <volume>0.02315124</volume>
+        <center_of_volume>-0.01458 0 0.06491</center_of_volume>
+      </link0>
+      <link1 name="thruster_surge_left">
+        <volume>0.00027943</volume>
+        <center_of_volume>0 0 0</center_of_volume>
+      </link1>
+      <link2 name="thruster_surge_right">
+        <volume>0.00027943</volume>
+        <center_of_volume>0 -0 0</center_of_volume>
+      </link2>
+      <link3 name="thruster_sway_back">
+        <volume>0.00027943</volume>
+        <center_of_volume>0 0 0</center_of_volume>
+      </link3>
+      <link4 name="thruster_sway_front">
+        <volume>0.00027943</volume>
+        <center_of_volume>0 0 0</center_of_volume>
+      </link4>
+      <link5 name="thruster_depth_back">
+        <volume>0.00027943</volume>
+        <center_of_volume>0 0 0</center_of_volume>
+      </link5>
+      <link6 name="thruster_depth_front">
+        <volume>0.00027943</volume>
+        <center_of_volume>0 0 0</center_of_volume>
+      </link6>
+      <link7 name="DVL">
+        <volume>0.00167599</volume>
+        <center_of_volume>0 0 0</center_of_volume>
+      </link7>
+      <link8 name="Imu">
+        <volume>0.000000001</volume>
+        <center_of_volume>0 0 0</center_of_volume>
+      </link8>
+      <link9 name="front_camera">
+        <volume>0.000336862</volume>
+        <center_of_volume>0 0 0</center_of_volume>
+      </link9>
+      <link10 name="bottom_camera">
+        <volume>0.000328802</volume> <!--0.00973801>
+        <center_of_volume>0 0 0</center_of_volume>
+      </link10>
+    </plugin> -->
+    <!-- <plugin name="BuoyancyPlugin" filename="lib_BouyancyPlugin.so">
         <fluid_density>1000</fluid_density>
         <link name="base_link">
-          <volume>0.001</volume>
-          <center_of_volume>0 0 0</center_of_volume><!--0.224272-->
-        </link>
-        <!--link name="thruster_surge_left">
+          <volume>0.0045</volume>
+          <center_of_volume>0 0 0</center_of_volume></link></plugin><!--0.224272> -->
+        <!-- </link>
+        <link name="thruster_surge_left">
           <volume>0.001</volume>
           <center_of_volume>0 0 0</center_of_volume>
         </link>
@@ -687,28 +739,7 @@
         <link name="bottom_camera">
           <volume>0.001</volume>
           <center_of_volume>0 0 0</center_of_volume>
-        </link-->
-  </plugin>
-
-   <plugin name="lifting_surface" filename="libLiftDragPlugin.so">
-        <a0>0.08727</a0>
-        <alpha_stall>0.3368</alpha_stall>
-        <cla>5.418</cla>
-        <cla_stall>-2.1419</cla_stall>
-        <cda>0.0</cda>
-        <cda_stall>0.0</cda_stall>
-        <cma>0.0</cma>
-        <cma_stall>0.0</cma_stall>
-        <area>3</area>
-        <fluid_density>1000</fluid_density>
-        <forward>-1 0 0</forward>
-        <upward>0 -1 0</upward>
-        <cp>0 0 1</cp>
-        <link_name>base_link</link_name>
-        <radial_symmetry>false</radial_symmetry>
-      </plugin>
-
-      <plugin name="KrakenControlPlugin" filename="libKrakenControlPlugin.so"></plugin>
-
+        </link>
+  </plugin-->
     </model>
     </sdf>

@@ -1,0 +1,213 @@
+<?xml version='1.0'?>
+<sdf version='1.4'>
+  <model name="arena">
+    <static>true</static>
+
+    <link name='base_link'>
+      <pose frame=''>0 0 0 1.5708 0 0</pose>
+      <visual name='base_link_visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+      </visual>
+      <collision name='base_link_collision'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='bucket1'>
+      <pose frame=''>22 -3.3 0 0 0 0</pose>
+      <visual name='bucket1_visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/bucket1.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Blue</name>
+            </script>
+          </material>
+      </visual>
+      <collision name='bucket1_collision'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/bucket1.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='bucket2'>
+      <pose frame=''>24.6 -3.3 0 0 0 0</pose>
+      <visual name='bucket2_visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/bucket2.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+      </visual>
+      <collision name='bucket2_collision'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/bucket2.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='bucket3'>
+      <pose frame=''>27.2 -3.3 0 0 0 0</pose>
+      <visual name='bucket3_visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/bucket3.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+      </visual>
+      <collision name='bucket3_collision'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/bucket3.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='bucket4'>
+      <pose frame=''>29.8 -3.3 0 0 0 0</pose>
+      <visual name='bucket4_visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/bucket4.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+      </visual>
+      <collision name='bucket4_collision'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/bucket4.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='validation_gate'>
+      <pose frame=''>20 -17 1.5 1.5708 0 0</pose>
+      <visual name='validation_gate_visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/validation_gate.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Green</name>
+            </script>
+          </material>
+      </visual>
+      <collision name='validation_gate_collision'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/validation_gate.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='start'>
+      <pose frame=''>24.3 -23.5 1.9 1.5708 0 0</pose>
+      <visual name='start_visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/start.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Yellow</name>
+            </script>
+          </material>
+      </visual>
+      <collision name='start_collision'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/start.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name='line'>
+      <pose frame=''>0 -15 0 0 0 0</pose>
+      <visual name='line_visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/line.STL</uri>
+          </mesh>
+        </geometry>
+        <!-- <material>
+            <color
+              rgba="0.79216 0.81961 0.93333 1" />
+        </material> -->
+      </visual>
+      <collision name='line_collision'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://arena/meshes/line.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+  </model>
+</sdf>
