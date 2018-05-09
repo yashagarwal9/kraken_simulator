@@ -20,7 +20,7 @@
         <visual name='base_link_visual'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/base_link.STL</uri>
+              <uri>model://kraken/meshes/base_link.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -29,7 +29,7 @@
         <collision name='base_link_collision'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/base_link.STL</uri>
+              <uri>model://kraken/meshes/base_link.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -68,7 +68,7 @@
         <visual name='thruster_surge_left_visual'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/thruster_surge_left.STL</uri>
+              <uri>model://kraken/meshes/thruster_surge_left.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -76,7 +76,7 @@
         <collision name='thruster_surge_left_collision'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/thruster_surge_left.STL</uri>
+              <uri>model://kraken/meshes/thruster_surge_left.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -119,7 +119,7 @@
         <visual name='thruster_surge_right_visual'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/thruster_surge_right.STL</uri>
+              <uri>model://kraken/meshes/thruster_surge_right.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -128,7 +128,7 @@
         <collision name='thruster_surge_right_collision'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/thruster_surge_right.STL</uri>
+              <uri>model://kraken/meshes/thruster_surge_right.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -171,7 +171,7 @@
         <visual name='thruster_sway_front_visual'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/thruster_sway_front.STL</uri>
+              <uri>model://kraken/meshes/thruster_sway_front.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -180,7 +180,7 @@
         <collision name='thruster_sway_front_collision'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/thruster_sway_front.STL</uri>
+              <uri>model://kraken/meshes/thruster_sway_front.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -223,7 +223,7 @@
         <visual name='thruster_sway_back_visual'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/thruster_sway_back.STL</uri>
+              <uri>model://kraken/meshes/thruster_sway_back.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -232,7 +232,7 @@
         <collision name='thruster_sway_back_collision'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/thruster_sway_back.STL</uri>
+              <uri>model://kraken/meshes/thruster_sway_back.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -275,7 +275,7 @@
         <visual name='thruster_depth_back_visual'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/thruster_depth_back.STL</uri>
+              <uri>model://kraken/meshes/thruster_depth_back.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -284,7 +284,7 @@
         <collision name='thruster_depth_back_collision'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/thruster_depth_back.STL</uri>
+              <uri>model://kraken/meshes/thruster_depth_back.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -327,7 +327,7 @@
         <visual name='thruster_depth_front_visual'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/thruster_depth_front.STL</uri>
+              <uri>model://kraken/meshes/thruster_depth_front.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -336,7 +336,7 @@
         <collision name='thruster_depth_front_collision'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/thruster_depth_front.STL</uri>
+              <uri>model://kraken/meshes/thruster_depth_front.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -379,7 +379,7 @@
         <visual name='front_camera_visual'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/front_camera.STL</uri>
+              <uri>model://kraken/meshes/front_camera.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -388,7 +388,7 @@
         <collision name='front_camera_collision'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/front_camera.STL</uri>
+              <uri>model://kraken/meshes/front_camera.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -469,7 +469,7 @@
         <visual name='bottom_camera_visual'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/bottom_camera.STL</uri>
+              <uri>model://kraken/meshes/bottom_camera.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -478,7 +478,7 @@
         <collision name='bottom_camera_collision'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/bottom_camera.STL</uri>
+              <uri>model://kraken/meshes/bottom_camera.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -559,7 +559,7 @@
         <visual name='DVL_visual'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/DVL.STL</uri>
+              <uri>model://kraken/meshes/DVL.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -568,7 +568,7 @@
         <collision name='DVL_collision'>
           <geometry>
             <mesh>
-              <uri>model://kraken_model/meshes/DVL.STL</uri>
+              <uri>model://kraken/meshes/DVL.STL</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
