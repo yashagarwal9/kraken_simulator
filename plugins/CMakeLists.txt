@@ -5,8 +5,9 @@ project(plugins)
 find_package(catkin REQUIRED COMPONENTS
   message_generation
   roscpp
+  sensor_msgs
   geometry_msgs
-  msgs_stack
+  kraken_msgs
   tf
 )
 
@@ -14,9 +15,9 @@ find_package(Boost REQUIRED COMPONENTS system)
 find_package(gazebo REQUIRED)
 
 catkin_package(
-  INCLUDE_DIRS include #${GAZEBO_INCLUDE_DIRS}
+  INCLUDE_DIRS include ${GAZEBO_INCLUDE_DIRS}
   LIBRARIES plugins
-  CATKIN_DEPENDS roscpp geometry_msgs msgs_stack tf
+  CATKIN_DEPENDS roscpp geometry_msgs kraken_msgs tf sensor_msgs
   DEPENDS
 )
 
@@ -24,7 +25,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
 
 include_directories(
   include
-  msgs_stack/include
+  #kraken_msgs/include
   ${catkin_INCLUDE_DIRS}
   ${GAZEBO_INCLUDE_DIRS}
 )

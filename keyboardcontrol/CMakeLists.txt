@@ -5,14 +5,14 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   roscpp
   rospy
-  msgs_stack
+  kraken_msgs
 )
 find_package(Boost REQUIRED COMPONENTS system)
 
 catkin_package(
-  INCLUDE_DIRS include
+  INCLUDE_DIRS
   LIBRARIES keyboard_control
-  CATKIN_DEPENDS geometry_msgs roscpp rospy msgs_stack
+  CATKIN_DEPENDS geometry_msgs roscpp rospy 
   DEPENDS system_lib
 )
 
