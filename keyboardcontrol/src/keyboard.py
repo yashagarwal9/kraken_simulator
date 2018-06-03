@@ -1,12 +1,12 @@
 from Tkinter import *
 import rospy
 
-from msgs_stack.msg._thrusterData6 import thrusterData6
+from kraken_msgs.msg._thrusterData6Thruster import thrusterData6Thruster
 
-pub = rospy.Publisher('KeyboardControl', thrusterData6, queue_size = 10)
+pub = rospy.Publisher('KeyboardControl', thrusterData6Thruster, queue_size = 10)
 rospy.init_node('KeyboardControl_py', anonymous = True)
 
-thrust = thrusterData6()
+thrust = thrusterData6Thruster()
 offset = 0
 thrust.data[0] = offset#200
 thrust.data[1] = offset#-200

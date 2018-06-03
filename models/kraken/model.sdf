@@ -646,7 +646,7 @@
       </joint>
 
     <plugin name="KrakenControlPlugin" filename="libKrakenControlPlugin.so"></plugin>
-    <!-- <plugin name="_Hydrodynamics" filename="lib_Hydrodynamics.so">
+    <plugin name="_Hydrodynamics" filename="lib_Hydrodynamics.so">
       <fluid_density>1000</fluid_density>
       <no_of_links>1</no_of_links>
       <link0 name="base_link">
@@ -690,56 +690,11 @@
         <center_of_volume>0 0 0</center_of_volume>
       </link9>
       <link10 name="bottom_camera">
-        <volume>0.000328802</volume> <!--0.00973801>
+        <volume>0.000328802</volume> 
         <center_of_volume>0 0 0</center_of_volume>
       </link10>
-    </plugin> -->
-    <!-- <plugin name="BuoyancyPlugin" filename="lib_BouyancyPlugin.so">
-        <fluid_density>1000</fluid_density>
-        <link name="base_link">
-          <volume>0.0045</volume>
-          <center_of_volume>0 0 0</center_of_volume></link></plugin><!--0.224272> -->
-        <!-- </link>
-        <link name="thruster_surge_left">
-          <volume>0.001</volume>
-          <center_of_volume>0 0 0</center_of_volume>
-        </link>
-        <link name="thruster_surge_right">
-          <volume>0.001</volume>
-          <center_of_volume>0 0 0</center_of_volume>
-        </link>
-        <link name="thruster_sway_back">
-          <volume>0.001</volume>
-          <center_of_volume>0 0 0</center_of_volume>
-        </link>
-        <link name="thruster_sway_front">
-          <volume>0.001</volume>
-          <center_of_volume>0 0 0</center_of_volume>
-        </link>
-        <link name="thruster_depth_back">
-          <volume>0.001</volume>
-          <center_of_volume>0 0 0</center_of_volume>
-        </link>
-        <link name="thruster_depth_front">
-          <volume>0.001</volume>
-          <center_of_volume>0 0 0</center_of_volume>
-        </link>
-        <link name="DVL">
-          <volume>0.001</volume>
-          <center_of_volume>0 0 0</center_of_volume>
-        </link>
-        <link name="Imu">
-          <volume>0.001</volume>
-          <center_of_volume>0 0 0</center_of_volume>
-        </link>
-        <link name="front_camera">
-          <volume>0.001</volume>
-          <center_of_volume>0 0 0</center_of_volume>
-        </link>
-        <link name="bottom_camera">
-          <volume>0.001</volume>
-          <center_of_volume>0 0 0</center_of_volume>
-        </link>
-  </plugin-->
-    </model>
-    </sdf>
+    </plugin>
+
+       
+  </model>
+</sdf>

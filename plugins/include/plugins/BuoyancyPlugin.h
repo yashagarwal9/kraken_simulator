@@ -4,7 +4,7 @@
 #include <map>
 #include "gazebo/common/Event.hh"
 #include "gazebo/common/Plugin.hh"
-#include "gazebo/math/Vector3.hh"
+#include "ignition/math/Vector3.hh"
 #include "gazebo/physics/physics.hh"
 
 namespace gazebo

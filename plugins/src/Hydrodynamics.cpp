@@ -49,28 +49,46 @@ void Hydrodynamics::Init(){
 
 void Hydrodynamics::Update(){
   this->getTwist();
-  double Damping_force[6];
-  this->Damping_matrix(Damping_force);
+  double v[6];
+  v[0]=this->COM_twist.linear.x;
+  v[1]=this->COM_twist.linear.y;
+  v[2]=this->COM_twist.linear.z;
+  v[3]=this->COM_twist.angular.x;
+  v[4]=this->COM_twist.angular.y;
+  v[5]=this->COM_twist.angular.z;
+  double Damping[36];
+  this->Damping_matrix(Damping,v);
+  double added_mass[36];
+  this->setAddedMass(added_mass);
   //this->apply_Dampingforce(Damping_force);
   this->Buoyancy();
+  this->apply_allforce(Damping,added_mass);
 }
 
-void Hydrodynamics::Damping_matrix(double *damp){
-  damp[0] = this->Damping[0] + this->quadratic_Damping[0]*this->COM_twist.linear.x;
-  damp[1] = this->Damping[1] + this->quadratic_Damping[1]*this->COM_twist.linear.y;
-  damp[2] = this->Damping[2] + this->quadratic_Damping[2]*this->COM_twist.linear.z;
-  damp[3] = this->Damping[3] + this->quadratic_Damping[3]*this->COM_twist.angular.x;
-  damp[4] = this->Damping[4] + this->quadratic_Damping[4]*this->COM_twist.angular.y;
-  damp[5] = this->Damping[5] + this->quadratic_Damping[5]*this->COM_twist.angular.z;
+void Hydrodynamics::Damping_matrix(double *damp,double *v){
+  //damp[0] = this->Damping[0] + this->quadratic_Damping[0]*this->COM_twist.linear.x;
+  //damp[1] = this->Damping[1] + this->quadratic_Damping[1]*this->COM_twist.linear.y;
+  //damp[2] = this->Damping[2] + this->quadratic_Damping[2]*this->COM_twist.linear.z;
+  //damp[3] = this->Damping[3] + this->quadratic_Damping[3]*this->COM_twist.angular.x;
+  //damp[4] = this->Damping[4] + this->quadratic_Damping[4]*this->COM_twist.angular.y;
+  //damp[5] = this->Damping[5] + this->quadratic_Damping[5]*this->COM_twist.angular.z;
+
+  //**SET THE DAMP EQUAL TO THE DAMPING MATRIX** THEY SHOULD BE +ve//
+}
+
+void Hydrodynamics::setAddedMass(double *added_mass){
+  //**SET THE VALUE OF ADDED MASS HERE**//??THEY SHOULD BE +ve??
+
+
 }
 
 void Hydrodynamics::getTwist(){
-  this->COM_twist.linear.x = this->model->GetRelativeLinearVel()[0];
-  this->COM_twist.linear.y = this->model->GetRelativeLinearVel()[1];
-  this->COM_twist.linear.z = this->model->GetRelativeLinearVel()[2];
-  this->COM_twist.angular.x = this->model->GetRelativeAngularVel()[0];
-  this->COM_twist.angular.y = this->model->GetRelativeAngularVel()[1];
-  this->COM_twist.angular.z = this->model->GetRelativeAngularVel()[2];
+  this->COM_twist.linear.x = this->model->GetLink("base_link")->GetRelativeLinearVel()[0];
+  this->COM_twist.linear.y = this->model->GetLink("base_link")->GetRelativeLinearVel()[1];
+  this->COM_twist.linear.z = this->model->GetLink("base_link")->GetRelativeLinearVel()[2];
+  this->COM_twist.angular.x = this->model->GetLink("base_link")->GetRelativeAngularVel()[0];
+  this->COM_twist.angular.y = this->model->GetLink("base_link")->GetRelativeAngularVel()[1];
+  this->COM_twist.angular.z = this->model->GetLink("base_link")->GetRelativeAngularVel()[2];
 }
 
 void Hydrodynamics::Buoyancy(){
@@ -86,15 +104,56 @@ void Hydrodynamics::Buoyancy(){
   }
 }
 
-void Hydrodynamics::apply_Dampingforce(double *damp){
-  math::Vector3 linacc;
-  math::Vector3 angacc;
-  linacc.x = -damp[0]*this->COM_twist.linear.x/23.15124;   //mass = 23.15124
-  linacc.y = -damp[1]*this->COM_twist.linear.y/23.15124;
-  linacc.z = -damp[2]*this->COM_twist.linear.z/23.15124;
-  angacc.x = -damp[3]*this->COM_twist.angular.x/23.15124;
-  angacc.y = -damp[4]*this->COM_twist.angular.y/23.15124;
-  angacc.z = -damp[5]*this->COM_twist.angular.z/23.15124;
-  this->model->SetLinearAccel(linacc);
-  this->model->SetAngularAccel(angacc);
+//void Hydrodynamics::apply_Dampingforce(double *damp){
+//  //math::Vector3 linacc;
+//  //math::Vector3 angacc;
+//  //linacc.x = (this->model->GetRelativeLinearAccel().x)-(damp[0]*this->COM_twist.linear.x/23.15124);   //mass = 23.15124
+//  //linacc.y = (this->model->GetRelativeLinearAccel().y)-(damp[1]*this->COM_twist.linear.y/23.15124);
+//  //linacc.z = (this->model->GetRelativeLinearAccel().z)-(damp[2]*this->COM_twist.linear.z/23.15124);
+//  //angacc.x = (this->model->GetRelativeAngularAccel().x)-(damp[3]*this->COM_twist.angular.x/23.15124);
+//  //angacc.y = (this->model->GetRelativeAngularAccel().y)-(damp[4]*this->COM_twist.angular.y/23.15124);
+//  //angacc.z = (this->model->GetRelativeAngularAccel().z)-(damp[5]*this->COM_twist.angular.z/23.15124);
+//  //this->model->SetRelativeLinearAccel(linacc);
+//  //this->model->SetRelativeAngularAccel(angacc);
+//
+//  math::Vector3 relforcedamp;
+//  relforcedamp.x=damp[0]*this->COM_twist.linear.x;
+//  relforcedamp.y=damp[1]*this->COM_twist.linear.y;
+//  relforcedamp.z=damp[2]*this->COM_twist.linear.z;
+//  math::Vector3 reltorquedamp;
+//  reltorquedamp.x=damp[3]*this->COM_twist.angular.x;
+//  reltorquedamp.y=damp[4]*this->COM_twist.angular.x;
+//  reltorquedamp.z=damp[5]*this->COM_twist.angular.x;
+//  std::cout<<reltorquedamp.x<<","<<reltorquedamp.y<<","<<reltorquedamp.z<<"\n";
+//  this->model->GetLink("base_link")->AddRelativeForce(relforcedamp);
+//  this->model->GetLink("base_link")->AddRelativeTorque(reltorquedamp);
+//}
+void Hydrodynamics::apply_allforce(double *damp,double *added_mass)
+{
+  math::Vector3 relforcedamp;
+  relforcedamp.x=(damp[0]*(this->COM_twist.linear.x))+(damp[1]*(this->COM_twist.linear.y))+(damp[2]*(this->COM_twist.linear.z))+(damp[3]*(this->COM_twist.angular.x))+(damp[4]*(this->COM_twist.angular.y))+(damp[5]*(this->COM_twist.angular.z));
+  relforcedamp.y=(damp[6]*this->COM_twist.linear.x)+(damp[7]*this->COM_twist.linear.y)+(damp[8]*this->COM_twist.linear.z)+(damp[9]*this->COM_twist.angular.x)+(damp[10]*this->COM_twist.angular.y)+(damp[11]*this->COM_twist.angular.z);
+  relforcedamp.z=(damp[12]*this->COM_twist.linear.x)+(damp[13]*this->COM_twist.linear.y)+(damp[14]*this->COM_twist.linear.z)+(damp[15]*this->COM_twist.angular.x)+(damp[16]*this->COM_twist.angular.y)+(damp[17]*this->COM_twist.angular.z);
+  math::Vector3 reltorquedamp;
+  reltorquedamp.x=(damp[18]*this->COM_twist.linear.x)+(damp[19]*this->COM_twist.linear.y)+(damp[20]*this->COM_twist.linear.z)+(damp[21]*this->COM_twist.angular.x)+(damp[22]*this->COM_twist.angular.y)+(damp[23]*this->COM_twist.angular.z);
+  reltorquedamp.y=(damp[24]*this->COM_twist.linear.x)+(damp[25]*this->COM_twist.linear.y)+(damp[26]*this->COM_twist.linear.z)+(damp[27]*this->COM_twist.angular.x)+(damp[28]*this->COM_twist.angular.y)+(damp[29]*this->COM_twist.angular.z);
+  reltorquedamp.z=(damp[30]*this->COM_twist.linear.x)+(damp[31]*this->COM_twist.linear.y)+(damp[32]*this->COM_twist.linear.z)+(damp[33]*this->COM_twist.angular.x)+(damp[34]*this->COM_twist.angular.y)+(damp[35]*this->COM_twist.angular.z);
+
+  math::Vector3 relforcemass;
+  math::Vector3 reltorquemass;
+  relforcemass.x=(added_mass[0]*(this->COM_twist.linear.x))+(added_mass[1]*(this->COM_twist.linear.y))+(added_mass[2]*(this->COM_twist.linear.z))+(added_mass[3]*(this->COM_twist.angular.x))+(added_mass[4]*(this->COM_twist.angular.y))+(added_mass[5]*(this->COM_twist.angular.z));
+  relforcemass.y=(added_mass[6]*this->COM_twist.linear.x)+(added_mass[7]*this->COM_twist.linear.y)+(added_mass[8]*this->COM_twist.linear.z)+(added_mass[9]*this->COM_twist.angular.x)+(added_mass[10]*this->COM_twist.angular.y)+(added_mass[11]*this->COM_twist.angular.z);
+  relforcemass.z=(added_mass[12]*this->COM_twist.linear.x)+(added_mass[13]*this->COM_twist.linear.y)+(added_mass[14]*this->COM_twist.linear.z)+(added_mass[15]*this->COM_twist.angular.x)+(added_mass[16]*this->COM_twist.angular.y)+(added_mass[17]*this->COM_twist.angular.z);
+  reltorquemass.x=(added_mass[18]*this->COM_twist.linear.x)+(added_mass[19]*this->COM_twist.linear.y)+(added_mass[20]*this->COM_twist.linear.z)+(added_mass[21]*this->COM_twist.angular.x)+(added_mass[22]*this->COM_twist.angular.y)+(added_mass[23]*this->COM_twist.angular.z);
+  reltorquemass.y=(added_mass[24]*this->COM_twist.linear.x)+(added_mass[25]*this->COM_twist.linear.y)+(added_mass[26]*this->COM_twist.linear.z)+(added_mass[27]*this->COM_twist.angular.x)+(added_mass[28]*this->COM_twist.angular.y)+(added_mass[29]*this->COM_twist.angular.z);
+  reltorquemass.z=(added_mass[30]*this->COM_twist.linear.x)+(added_mass[31]*this->COM_twist.linear.y)+(added_mass[32]*this->COM_twist.linear.z)+(added_mass[33]*this->COM_twist.angular.x)+(added_mass[34]*this->COM_twist.angular.y)+(added_mass[35]*this->COM_twist.angular.z);
+  //std::cout<<reltorquedamp.x<<","<<reltorquedamp.y<<","<<reltorquedamp.z<<"\n";
+
+  math::Vector3 relforce;
+  math::Vector3 reltorque;
+  relforce=-relforcedamp-relforcemass;
+  reltorque=-reltorquedamp-reltorquedamp;
+  this->model->GetLink("base_link")->AddRelativeForce(relforce);
+  this->model->GetLink("base_link")->AddRelativeTorque(reltorque);
+
 }

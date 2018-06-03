@@ -32,12 +32,13 @@ namespace gazebo{
     physics::PhysicsEnginePtr physicsEngine;
     sdf::ElementPtr sdf;
     geometry_msgs::Twist COM_twist;
-    double Damping[6] = {0.0, 0.0, 0.0, -130.0, -130.0, -130.0};
-    double quadratic_Damping[6] = {-148.0, -148.0, -148.0, -180.0, -180.0, -180.0};
-    void Damping_matrix(double *damp);
-    void apply_Dampingforce(double *damp);
-    void getTwist();
+    //double quadratic_Damping[6] = {-4.05, -113.0, -115.0, -0.0229, -4.3, -1.57};
+    void Damping_matrix(double *damp,double *v);
+    //void apply_Dampingforce(double *damp);
     void Buoyancy();
+    void setAddedMass(double *added_mass);
+    void apply_allforce(double *damp,double *added_mass);
+    void getTwist();
     std::map<int, VolumeProperties> volPropsMap;
 
   };
