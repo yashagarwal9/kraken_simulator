@@ -78,6 +78,42 @@ void Hydrodynamics::Damping_matrix(double *damp,double *v){
 
 void Hydrodynamics::setAddedMass(double *added_mass){
   //**SET THE VALUE OF ADDED MASS HERE**//??THEY SHOULD BE +ve??
+  added_mass[0]=2.082654;
+  added_mass[1]=0;
+  added_mass[2]=0;
+  added_mass[3]=0;
+  added_mass[4]=0;
+  added_mass[5]=0;
+  added_mass[6]=0;
+  added_mass[7]=19.6210693;
+  added_mass[8]=0;
+  added_mass[9]=0;
+  added_mass[10]=0;
+  added_mass[11]=0;
+  added_mass[12]=0;
+  added_mass[13]=0;
+  added_mass[14]=19.6210693;
+  added_mass[15]=0;
+  added_mass[16]=0;
+  added_mass[17]=0;
+  added_mass[18]=0;
+  added_mass[19]=0;
+  added_mass[20]=0;
+  added_mass[21]=0;
+  added_mass[22]=0;
+  added_mass[23]=0;
+  added_mass[24]=0;
+  added_mass[25]=0;
+  added_mass[26]=0;
+  added_mass[27]=0;
+  added_mass[28]=4.76528099;
+  added_mass[29]=0;
+  added_mass[30]=0;
+  added_mass[31]=0;
+  added_mass[32]=0;
+  added_mass[33]=0;
+  added_mass[34]=0;
+  added_mass[35]=4.76528099;
 
 
 }
@@ -152,7 +188,7 @@ void Hydrodynamics::apply_allforce(double *damp,double *added_mass)
   math::Vector3 relforce;
   math::Vector3 reltorque;
   relforce=-relforcedamp-relforcemass;
-  reltorque=-reltorquedamp-reltorquedamp;
+  reltorque=-reltorquedamp-reltorquemass;
   this->model->GetLink("base_link")->AddRelativeForce(relforce);
   this->model->GetLink("base_link")->AddRelativeTorque(reltorque);
 
