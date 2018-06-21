@@ -1,0 +1,11 @@
+﻿Package Discription
+MODELS: Currently Kraken3 model is being used. Folder models contains all the sdf and mesh files (generated using sw2urdf extension in Solidworks with base_link’s COM as the COM of the whole AUV). 
+PLUGINS: It contains the source file of Hydrodynamics(calculates the Drag force, Added mass and Bouyancy) and KrakenControl(publishes the IMU and DVL sensor data) plugins.
+
+Interfacing
+Add the ‘models’ folder in the ENV variables(add the following command in the .bashrc)
+COMMAND: “export GAZEBO_MODEL_PATH=~/teamauv_ws/src/kraken_reboot/kraken_simulator/models:$GAZEBO_MODEL_PATH”
+Caution: Make sure that correct path has been given.
+Run the COMMAND: “rosrun gazebo_ros gazebo --verbose”
+Add 'kraken' from the model list.
+All the topics name for the simulator are the same, used for AUV.

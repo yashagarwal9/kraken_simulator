@@ -58,9 +58,9 @@ void KrakenControlPlugin::Update(){
  //listener.transformVector("/base_link",grav,tempo);
 
  sensor_msgs::Imu Imu_data;
- Imu_data.linear_acceleration.x =tempo.x - this->model->GetLink("Imu")->GetRelativeLinearAccel()[0];
- Imu_data.linear_acceleration.y =tempo.y - this->model->GetLink("Imu")->GetRelativeLinearAccel()[1];
- Imu_data.linear_acceleration.z =tempo.z - this->model->GetLink("Imu")->GetRelativeLinearAccel()[2];
+ Imu_data.linear_acceleration.x = tempo.x - this->model->GetLink("Imu")->GetRelativeLinearAccel()[0];
+ Imu_data.linear_acceleration.y = tempo.y - this->model->GetLink("Imu")->GetRelativeLinearAccel()[1];
+ Imu_data.linear_acceleration.z = tempo.z - this->model->GetLink("Imu")->GetRelativeLinearAccel()[2];
 
  Imu_data.angular_velocity.x = this->model->GetLink("Imu")->GetRelativeAngularVel()[0];
  Imu_data.angular_velocity.y = this->model->GetLink("Imu")->GetRelativeAngularVel()[1];
