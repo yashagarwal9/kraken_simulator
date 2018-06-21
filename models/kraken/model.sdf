@@ -600,12 +600,12 @@
         <inertial>
           <mass>1e-06</mass>
           <inertia>
-            <ixx>0.0001</ixx>
-            <ixy>0.0001</ixy>
-            <ixz>0.0001</ixz>
-            <iyy>0.0001</iyy>
-            <iyz>0.0001</iyz>
-            <izz>0.0001</izz>
+            <ixx>0.000001</ixx>
+            <ixy>0.000001</ixy>
+            <ixz>0.000001</ixz>
+            <iyy>0.000001</iyy>
+            <iyz>0.000001</iyz>
+            <izz>0.000001</izz>
           </inertia>
         </inertial>
         <visual name='Imu_visual'>
@@ -646,6 +646,7 @@
       </joint>
 
     <plugin name="KrakenControlPlugin" filename="libKrakenControlPlugin.so"></plugin>
+
     <plugin name="_Hydrodynamics" filename="lib_Hydrodynamics.so">
       <fluid_density>1000</fluid_density>
       <no_of_links>1</no_of_links>
@@ -653,7 +654,8 @@
         <volume>0.02315124</volume>
         <center_of_volume>-0.01458 0 0.06491</center_of_volume>
       </link0>
-      <link1 name="thruster_surge_left">
+    </plugin>
+      <!-- <link1 name="thruster_surge_left">
         <volume>0.00027943</volume>
         <center_of_volume>0 0 0</center_of_volume>
       </link1>
@@ -690,11 +692,10 @@
         <center_of_volume>0 0 0</center_of_volume>
       </link9>
       <link10 name="bottom_camera">
-        <volume>0.000328802</volume> 
-        <center_of_volume>0 0 0</center_of_volume>
-      </link10>
-    </plugin>
+        <volume>0.000328802</volume> <!--0.00973801-->
+        <!-- <center_of_volume>0 0 0</center_of_volume>
+      </link10> -->
 
-       
-  </model>
-</sdf>
+
+    </model>
+    </sdf>

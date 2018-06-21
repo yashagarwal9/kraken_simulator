@@ -93,26 +93,26 @@ void KrakenControlPlugin::thrust6Callback(const kraken_msgs::thrusterData6Thrust
   for(int i = 0; i<6; i++){
     if((msg->data[i] < 50000) && (msg->data[i] >= 0)){
           thrust.data[i] = msg->data[i];
-          thrust.data[i] = 0.0006835*thrust.data[i]*thrust.data[i];
+          thrust.data[i] = 0.0625*thrust.data[i]*thrust.data[i];
         }
 
     else if((msg->data[i] > -50000) && (msg->data[i] < 0)){
           thrust.data[i] = msg->data[i];
-          thrust.data[i] = -0.0006835*thrust.data[i]*thrust.data[i];
+          thrust.data[i] = -0.0625*thrust.data[i]*thrust.data[i];
         }
 
     else{
           if((msg->data[i] > 0))
-            thrust.data[i] = 0.0006835*50000*50000;
+            thrust.data[i] = 0.0625*50000*50000;
           if((msg->data[i] < 0))
-            thrust.data[i] = -0.0006835*50000*50000;
+            thrust.data[i] = -0.0625*50000*50000;
         }
       }
   std::cout<<thrust<<"\n";
-  this->model->GetLink("thruster_surge_left")->AddRelativeForce({thrust.data[0], 0, 0});
-  this->model->GetLink("thruster_surge_right")->AddRelativeForce({thrust.data[1], 0, 0});
-  this->model->GetLink("thruster_sway_back")->AddRelativeForce({thrust.data[2], 0, 0});
-  this->model->GetLink("thruster_sway_front")->AddRelativeForce({thrust.data[3], 0, 0});
-  this->model->GetLink("thruster_depth_back")->AddRelativeForce({thrust.data[4], 0, 0});
-  this->model->GetLink("thruster_depth_front")->AddRelativeForce({thrust.data[5], 0, 0});
+  this->model->GetLink("thruster_surge_left")->AddRelativeForce({-thrust.data[2], 0, 0});//{thrust.data[0], 0, 0}
+  this->model->GetLink("thruster_surge_right")->AddRelativeForce({-thrust.data[3], 0, 0});//({thrust.data[1], 0, 0
+  this->model->GetLink("thruster_sway_back")->AddRelativeForce({-thrust.data[4], 0, 0});//thrust.data[2], 0, 0})
+  this->model->GetLink("thruster_sway_front")->AddRelativeForce({-thrust.data[5], 0, 0});//{thrust.data[3], 0, 0}
+  this->model->GetLink("thruster_depth_back")->AddRelativeForce({-thrust.data[0], 0, 0});//{thrust.data[4], 0, 0}
+  this->model->GetLink("thruster_depth_front")->AddRelativeForce({-thrust.data[1], 0, 0});//({thrust.data[5], 0, 0
 }
