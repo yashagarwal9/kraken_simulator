@@ -3,18 +3,20 @@
 
 #include "gazebo/common/Event.hh"
 #include "gazebo/common/Plugin.hh"
-#include "gazebo/math/Vector3.hh"
+#include "ignition/math/Vector3.hh"
 #include "gazebo/physics/physics.hh"
 #include "geometry_msgs/Twist.h"
 #include "geometry_msgs/Pose.h"
 #include "gazebo/common/Assert.hh"
 #include "map"
+#include "ignition/math/Pose3.hh"
 namespace gazebo{
   class VolumeProperties
   {
-    public: VolumeProperties() : volume(0) {}
-    public: math::Vector3 cov;
-    public: double volume;
+    public: 
+      VolumeProperties() : volume(0) {}
+      ignition::math::Vector3<double> cov;
+      double volume;
   };
   class GAZEBO_VISIBLE Hydrodynamics : public ModelPlugin{
   public:
@@ -23,7 +25,7 @@ namespace gazebo{
     virtual void Init();
     double volume;
     double fluidDensity;
-    math::Vector3 cov;
+    ignition::math::Vector3<double> cov;
 
   protected:
     virtual void Update();

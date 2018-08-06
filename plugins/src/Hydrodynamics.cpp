@@ -10,7 +10,7 @@ void Hydrodynamics::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf){
   this->model = _model;
   this->sdf = _sdf;
   physics::WorldPtr world = _model->GetWorld();
-  this->physicsEngine = world->GetPhysicsEngine();
+  this->physicsEngine = world->Physics();
   GZ_ASSERT(world != NULL, "MODEL IS IN A NULL WORLD");
   GZ_ASSERT(this->physicsEngine != NULL, "PHYSICS ENGINE IS NULL");
   GZ_ASSERT(_sdf != NULL, "RECEIVED NULL SDF POINTER");
@@ -29,7 +29,7 @@ void Hydrodynamics::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf){
           id = link->GetId();
         }
       if(linkElem->HasElement("center_of_volume")){
-          math::Vector3 cov = linkElem->GetElement("center_of_volume")->Get<math::Vector3>();
+          ignition::math::Vector3<double> cov = linkElem->GetElement("center_of_volume")->Get<ignition::math::Vector3<double>>();
           this->volPropsMap[id].cov = cov;
           //std::cout<<cov<<" ";
         }
@@ -66,22 +66,22 @@ void Hydrodynamics::Damping_matrix(double *damp){
 }
 
 void Hydrodynamics::getTwist(){
-  this->COM_twist.linear.x = this->model->GetLink("base_link")->GetRelativeLinearVel()[0];
-  this->COM_twist.linear.y = this->model->GetLink("base_link")->GetRelativeLinearVel()[1];
-  this->COM_twist.linear.z = this->model->GetLink("base_link")->GetRelativeLinearVel()[2];
-  this->COM_twist.angular.x = this->model->GetLink("base_link")->GetRelativeAngularVel()[0];
-  this->COM_twist.angular.y = this->model->GetLink("base_link")->GetRelativeAngularVel()[1];
-  this->COM_twist.angular.z = this->model->GetLink("base_link")->GetRelativeAngularVel()[2];
+  this->COM_twist.linear.x = this->model->GetLink("base_link")->RelativeLinearVel()[0];
+  this->COM_twist.linear.y = this->model->GetLink("base_link")->RelativeLinearVel()[1];
+  this->COM_twist.linear.z = this->model->GetLink("base_link")->RelativeLinearVel()[2];
+  this->COM_twist.angular.x = this->model->GetLink("base_link")->RelativeAngularVel()[0];
+  this->COM_twist.angular.y = this->model->GetLink("base_link")->RelativeAngularVel()[1];
+  this->COM_twist.angular.z = this->model->GetLink("base_link")->RelativeAngularVel()[2];
 }
 
 void Hydrodynamics::Buoyancy(){
   for(auto link : this->model->GetLinks()){
     //double buoyancy = this->fluidDensity * this->volume * 9.81;
-    math::Vector3 buoyancy = -this->fluidDensity * this->volPropsMap[link->GetId()].volume * this->physicsEngine->GetGravity();
+    ignition::math::Vector3<double> buoyancy = -this->fluidDensity * this->volPropsMap[link->GetId()].volume * this->model->GetWorld()->Gravity();
     //std::cout<<this->physicsEngine->GetGravity()<<"\n";
-    math::Pose linkFrame = link->GetWorldPose();
+    ignition::math::Pose3<double> linkFrame = link->WorldPose();
     // rotate buoyancy into the link frame before applying the force.
-    math::Vector3 buoyancyLinkFrame = linkFrame.rot.GetInverse().RotateVector(buoyancy);
+    ignition::math::Vector3<double> buoyancyLinkFrame = linkFrame.Rot().Inverse().RotateVector(buoyancy);
     //std::cout<<buoyancyLinkFrame<<"\n";
     link->AddLinkForce(buoyancyLinkFrame, this->volPropsMap[link->GetId()].cov);
   }
@@ -91,38 +91,38 @@ void Hydrodynamics::Damping(){
   double damp[6];
   this->Damping_matrix(damp);
 
-  math::Vector3 relforcedamp;
-  relforcedamp.x = damp[0]*this->COM_twist.linear.x;
-  relforcedamp.y = damp[1]*this->COM_twist.linear.y;
-  relforcedamp.z = damp[2]*this->COM_twist.linear.z;
+  ignition::math::Vector3<double> relforcedamp;
+  relforcedamp.X() = damp[0]*this->COM_twist.linear.x;
+  relforcedamp.Y() = damp[1]*this->COM_twist.linear.y;
+  relforcedamp.Z() = damp[2]*this->COM_twist.linear.z;
 
-  math::Vector3 reltorquedamp;
-  reltorquedamp.x = damp[3]*this->COM_twist.angular.x;
-  reltorquedamp.y = damp[4]*this->COM_twist.angular.y;
-  reltorquedamp.z = damp[5]*this->COM_twist.angular.z;
+  ignition::math::Vector3<double> reltorquedamp;
+  reltorquedamp.X() = damp[3]*this->COM_twist.angular.x;
+  reltorquedamp.Y() = damp[4]*this->COM_twist.angular.y;
+  reltorquedamp.Z() = damp[5]*this->COM_twist.angular.z;
 
   this->model->GetLink("base_link")->AddRelativeForce(relforcedamp);
   this->model->GetLink("base_link")->AddRelativeTorque(reltorquedamp);
 }
 
 void Hydrodynamics::AddedMass(){
-  math::Vector3 linAcc;
-  linAcc.x = this->model->GetLink("base_link")->GetRelativeLinearAccel()[0];
-  linAcc.y = this->model->GetLink("base_link")->GetRelativeLinearAccel()[1];
-  linAcc.z = this->model->GetLink("base_link")->GetRelativeLinearAccel()[2];
-  math::Vector3 Force;
-  Force.x = this->added_mass[0] * linAcc.x;
-  Force.y = this->added_mass[1] * linAcc.y;
-  Force.z = this->added_mass[2] * linAcc.z;
+  ignition::math::Vector3<double> linAcc;
+  linAcc.X() = this->model->GetLink("base_link")->RelativeLinearAccel()[0];
+  linAcc.Y() = this->model->GetLink("base_link")->RelativeLinearAccel()[1];
+  linAcc.Z() = this->model->GetLink("base_link")->RelativeLinearAccel()[2];
+  ignition::math::Vector3<double> Force;
+  Force.X() = this->added_mass[0] * linAcc.X();
+  Force.Y() = this->added_mass[1] * linAcc.Y();
+  Force.Z() = this->added_mass[2] * linAcc.Z();
 
-  math::Vector3 rotAcc;
-  rotAcc.x = this->model->GetLink("base_link")->GetRelativeAngularAccel()[0];
-  rotAcc.y = this->model->GetLink("base_link")->GetRelativeAngularAccel()[1];
-  rotAcc.z = this->model->GetLink("base_link")->GetRelativeAngularAccel()[2];
-  math::Vector3 Torque;
-  Torque.x = this->added_mass[3] * rotAcc.x;
-  Torque.y = this->added_mass[4] * rotAcc.y;
-  Torque.z = this->added_mass[5] * rotAcc.z;
+  ignition::math::Vector3<double> rotAcc;
+  rotAcc.X() = this->model->GetLink("base_link")->RelativeAngularAccel()[0];
+  rotAcc.Y() = this->model->GetLink("base_link")->RelativeAngularAccel()[1];
+  rotAcc.Z() = this->model->GetLink("base_link")->RelativeAngularAccel()[2];
+  ignition::math::Vector3<double> Torque;
+  Torque.X() = this->added_mass[3] * rotAcc.X();
+  Torque.Y() = this->added_mass[4] * rotAcc.Y();
+  Torque.Z() = this->added_mass[5] * rotAcc.Z();
 
   this->model->GetLink("base_link")->AddRelativeForce(Force);
   this->model->GetLink("base_link")->AddRelativeTorque(Torque);

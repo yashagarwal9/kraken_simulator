@@ -692,7 +692,7 @@
         <center_of_volume>0 0 0</center_of_volume>
       </link9>
       <link10 name="bottom_camera">
-        <volume>0.000328802</volume> <!--0.00973801-->
+        <volume>0.000328802</volume> <0.00973801-->
         <!-- <center_of_volume>0 0 0</center_of_volume>
       </link10> -->
 

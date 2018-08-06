@@ -31,9 +31,9 @@ include_directories(
 )
 
 ## Declare a C++ library
-add_library(_BouyancyPlugin src/BuoyancyPlugin.cpp)
-target_link_libraries(_BouyancyPlugin ${catkin_LIBRARIES} ${GAZEBO_libraries})
-add_dependencies(_BouyancyPlugin ${catkin_EXPORTED_TARGETS} ${GAZEBO_libraries})
+#add_library(_BouyancyPlugin src/BuoyancyPlugin.cpp)
+#target_link_libraries(_BouyancyPlugin ${catkin_LIBRARIES} ${GAZEBO_libraries})
+#add_dependencies(_BouyancyPlugin ${catkin_EXPORTED_TARGETS} ${GAZEBO_libraries})
 
 add_library(KrakenControlPlugin src/KrakenControl.cpp)
 target_link_libraries(KrakenControlPlugin ${catkin_LIBRARIES} ${GAZEBO_libraries})
@@ -48,11 +48,6 @@ target_link_libraries(transform_br ${catkin_LIBRARIES})
 add_dependencies(transform_br ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Mark executables and/or libraries for installation
-install(TARGETS _BouyancyPlugin
-   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
- )
 
  install(TARGETS KrakenControlPlugin
    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}

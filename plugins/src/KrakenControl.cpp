@@ -1,8 +1,5 @@
 #include<plugins/KrakenControl.h>
-#include<gazebo/common/Assert.hh>
-#include<geometry_msgs/TwistWithCovarianceStamped.h>
-#include<geometry_msgs/Pose.h>
-#include<iostream>
+
 using namespace gazebo;
 GZ_REGISTER_MODEL_PLUGIN(KrakenControlPlugin)
 
@@ -12,7 +9,7 @@ void KrakenControlPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf){
   this->model = _model;
   this->sdf = _sdf;
   physics::WorldPtr world = _model->GetWorld();
-  this->physicsEngine = world->GetPhysicsEngine();
+  this->physicsEngine = world->Physics();
   GZ_ASSERT(world != NULL, "MODEL IS IN A NULL WORLD");
   GZ_ASSERT(this->physicsEngine != NULL, "PHYSICS ENGINE WAS NULL");
   GZ_ASSERT(_sdf != NULL, "RECEIVED NULL SDF POINTER");
@@ -32,9 +29,9 @@ void KrakenControlPlugin::Init(){
 
 void KrakenControlPlugin::Update(){
  geometry_msgs::TwistWithCovarianceStamped DVL_Twist;
- DVL_Twist.twist.twist.linear.x = this->model->GetLink("DVL")->GetRelativeLinearVel()[0];
- DVL_Twist.twist.twist.linear.y = this->model->GetLink("DVL")->GetRelativeLinearVel()[1];
- DVL_Twist.twist.twist.linear.z = this->model->GetLink("DVL")->GetRelativeLinearVel()[2];
+ DVL_Twist.twist.twist.linear.x = this->model->GetLink("DVL")->RelativeLinearVel()[0];
+ DVL_Twist.twist.twist.linear.y = this->model->GetLink("DVL")->RelativeLinearVel()[1];
+ DVL_Twist.twist.twist.linear.z = this->model->GetLink("DVL")->RelativeLinearVel()[2];
  DVLPub.publish(DVL_Twist);
 
 
@@ -47,42 +44,42 @@ void KrakenControlPlugin::Update(){
  //ros::Duration(1.0).sleep();
  //}
 
- math::Vector3 grav=this->physicsEngine->GetGravity();;
+ ignition::math::Vector3d grav = this->model->GetWorld()->Gravity();
  //grav.x=0;
  //grav.y=0;
  //grav.z=9.81;
  physics::LinkPtr link = this->model->GetLink("Imu");
- math::Pose linkFrame = link->GetWorldPose();
- math::Vector3 tempo = linkFrame.rot.GetInverse().RotateVector(grav);
+ ignition::math::Pose3d linkFrame = link->WorldPose();
+ ignition::math::Vector3d tempo = linkFrame.Rot().Inverse().RotateVector(grav);
 
  //listener.transformVector("/base_link",grav,tempo);
 
  sensor_msgs::Imu Imu_data;
- Imu_data.linear_acceleration.x = tempo.x - this->model->GetLink("Imu")->GetRelativeLinearAccel()[0];
- Imu_data.linear_acceleration.y = tempo.y - this->model->GetLink("Imu")->GetRelativeLinearAccel()[1];
- Imu_data.linear_acceleration.z = tempo.z - this->model->GetLink("Imu")->GetRelativeLinearAccel()[2];
+ Imu_data.linear_acceleration.x = tempo.X() - this->model->GetLink("Imu")->RelativeLinearAccel()[0];
+ Imu_data.linear_acceleration.y = tempo.Y() - this->model->GetLink("Imu")->RelativeLinearAccel()[1];
+ Imu_data.linear_acceleration.z = tempo.Z() - this->model->GetLink("Imu")->RelativeLinearAccel()[2];
 
- Imu_data.angular_velocity.x = this->model->GetLink("Imu")->GetRelativeAngularVel()[0];
- Imu_data.angular_velocity.y = this->model->GetLink("Imu")->GetRelativeAngularVel()[1];
- Imu_data.angular_velocity.z = this->model->GetLink("Imu")->GetRelativeAngularVel()[2];
+ Imu_data.angular_velocity.x = this->model->GetLink("Imu")->RelativeAngularVel()[0];
+ Imu_data.angular_velocity.y = this->model->GetLink("Imu")->RelativeAngularVel()[1];
+ Imu_data.angular_velocity.z = this->model->GetLink("Imu")->RelativeAngularVel()[2];
 
  //tf::Quaternion q(this->model->GetLink("Imu")->GetRelativePose.orientation[0],this->model->GetLink("Imu")->GetRelativePose[1],this->model->GetLink("Imu")->GetRelativePose[2]);
- Imu_data.orientation.x = this->model->GetLink("Imu")->GetRelativePose().rot.x;
- Imu_data.orientation.y = this->model->GetLink("Imu")->GetRelativePose().rot.y;
- Imu_data.orientation.z = this->model->GetLink("Imu")->GetRelativePose().rot.z;
- Imu_data.orientation.w = this->model->GetLink("Imu")->GetRelativePose().rot.w;
+ Imu_data.orientation.x = this->model->GetLink("Imu")->RelativePose().Rot().X();
+ Imu_data.orientation.y = this->model->GetLink("Imu")->RelativePose().Rot().Y();
+ Imu_data.orientation.z = this->model->GetLink("Imu")->RelativePose().Rot().Z();
+ Imu_data.orientation.w = this->model->GetLink("Imu")->RelativePose().Rot().W();
 
  ImuPub.publish(Imu_data);
 
  geometry_msgs::Pose _pose;
  physics::ModelState modelState(this->model);
- _pose.position.x = modelState.GetPose().pos.x;
- _pose.position.y = modelState.GetPose().pos.y;
- _pose.position.z = modelState.GetPose().pos.z;
- _pose.orientation.x = modelState.GetPose().rot.x;
- _pose.orientation.y = modelState.GetPose().rot.y;
- _pose.orientation.z = modelState.GetPose().rot.z;
- _pose.orientation.w = modelState.GetPose().rot.w;
+ _pose.position.x = modelState.Pose().Pos().X();
+ _pose.position.y = modelState.Pose().Pos().Y();
+ _pose.position.z = modelState.Pose().Pos().Z();
+ _pose.orientation.x = modelState.Pose().Rot().X();
+ _pose.orientation.y = modelState.Pose().Rot().Y();
+ _pose.orientation.z = modelState.Pose().Rot().Z();
+ _pose.orientation.w = modelState.Pose().Rot().W();
  PosePub.publish(_pose);
  ros::spinOnce();
 
